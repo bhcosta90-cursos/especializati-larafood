@@ -65,7 +65,11 @@ class PlanController extends Controller
 
     public function show(string $url)
     {
-        $rs = $this->repository->where('url', $url)->first();
+        $rs = $this->repository
+            ->with('details')
+            ->where('url', $url)
+            ->first();
+
         if (!$rs) {
             return redirect()->back();
         }

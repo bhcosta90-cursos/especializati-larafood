@@ -17,6 +17,6 @@ class DetailPlan extends Model
 
     public function plan()
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsTo(Plan::class)->orderBy('name');
     }
 }

@@ -10,7 +10,7 @@ class DetailPlanForm extends Form
     public function buildForm()
     {
         $this->add('name', Field::TEXT, [
-            'label' => 'Nome do plano',
+            'label' => 'Detalhe do plano',
             'rules' => "required|min:3|max:100"
         ]);
     }

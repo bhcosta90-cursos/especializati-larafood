@@ -26,11 +26,11 @@ class Profile extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class)->orderBy('name');
     }
 
     public function plans()
     {
-        return $this->belongsToMany(Plan::class);
+        return $this->belongsToMany(Plan::class)->orderBy('name');
     }
 }

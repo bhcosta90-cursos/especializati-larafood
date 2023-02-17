@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory($total)->create();
 
         $this->call(PlanSeeder::class);
+        $this->call(DetailPlanSeeder::class);
     }
 }

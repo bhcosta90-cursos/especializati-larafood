@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\{
     PermissionProfileController,
     PlanProfileController
 };
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +22,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [PlanController::class, 'index'])->name('home');
 
 Route::group([
     'prefix' => 'admin',
