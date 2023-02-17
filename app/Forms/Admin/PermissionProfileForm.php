@@ -5,7 +5,7 @@ namespace App\Forms\Admin;
 use App\Models\Permission;
 use Kris\LaravelFormBuilder\{Form, Field};
 
-class ProfilePermissionForm extends Form
+class PermissionProfileForm extends Form
 {
     public function __construct(private Permission $permission)
     {

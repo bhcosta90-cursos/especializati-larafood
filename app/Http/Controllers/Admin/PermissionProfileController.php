@@ -22,7 +22,7 @@ class PermissionProfileController extends Controller
         }
 
         $rs->permissions = $rs->permissions->pluck('id')->toArray();
-        $form = $formSupport->run(\App\Forms\Admin\ProfilePermissionForm::class, route('admin.profiles.permissions.store', $id), $rs);
+        $form = $formSupport->run(\App\Forms\Admin\PermissionProfileForm::class, route('admin.profiles.permissions.store', $id), $rs);
 
         $title = $rs->name;
         $details = $rs->permissions()->get();
@@ -35,7 +35,7 @@ class PermissionProfileController extends Controller
             return redirect()->back();
         }
 
-        $data = $formSupport->data(\App\Forms\Admin\ProfilePermissionForm::class);
+        $data = $formSupport->data(\App\Forms\Admin\PermissionProfileForm::class);
 
         $rs->permissions()->sync($data['permissions']);
 
