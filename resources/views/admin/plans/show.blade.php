@@ -22,14 +22,16 @@
                     <strong>Descrição: </strong> {{ $rs->description ?: "-" }}
                 </li>
             </ul>
-        </div>
-        <div class='card-footer'>
-            {!! Form::open(['route' => ['admin.plans.destroy', $rs->url], 'method' => 'delete']) !!}
+
+            @include('admin.includes.alerts')
+
+            {!! Form::open(['route' => ['admin.plans.destroy', $rs->url], 'method' => 'delete', 'class' => 'form-delete']) !!}
             <button type='submit' class='btn btn-outline-danger'>
                 <i class='fas fa-trash'></i>
                 Deletar
             </button>
             {!! Form::close() !!}
         </div>
+
     </div>
 @stop

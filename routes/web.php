@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PlanController;
+use App\Http\Controllers\Admin\{DetailPlanController, PlanController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +27,11 @@ Route::group([
     'as' => 'admin.'
 ], function(){
     Route::resource('plans', PlanController::class);
+
+    Route::group([
+        'prefix' => '{url}',
+        'as' => 'plan.'
+    ], function () {
+        Route::resource('detail', DetailPlanController::class)->only(['create', 'store', 'destroy']);
+    });
 });

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Plan;
 use App\Support\FormSupport;
 use Illuminate\Http\Request;
@@ -35,12 +36,12 @@ class PlanController extends Controller
             $obj->update($data);
         }
 
-        return redirect()->route('admin.plans.index');
+        return redirect()->route('admin.plans.index')->with('success', 'Plano cadastrado com sucesso');
     }
 
     public function edit(FormSupport $formSupport, string $url)
     {
-        $rs = $this->repository->where('url', $url)->firstOrFail();
+        $rs = $this->repository->where('url', $url)->first();
         if (!$rs) {
             return redirect()->back();
         }
@@ -53,18 +54,18 @@ class PlanController extends Controller
     {
         $data = $formSupport->data(\App\Forms\Admin\PlanForm::class);
 
-        $rs = $this->repository->where('url', $url)->firstOrFail();
+        $rs = $this->repository->where('url', $url)->first();
         if (!$rs) {
             return redirect()->back();
         }
 
         $rs->update($data);
-        return redirect()->route('admin.plans.index');
+        return redirect()->route('admin.plans.index')->with('success', 'Plano editado com sucesso');
     }
 
     public function show(string $url)
     {
-        $rs = $this->repository->where('url', $url)->firstOrFail();
+        $rs = $this->repository->where('url', $url)->first();
         if (!$rs) {
             return redirect()->back();
         }
@@ -73,14 +74,18 @@ class PlanController extends Controller
 
     public function destroy(string $url)
     {
-        $rs = $this->repository->where('url', $url)->firstOrFail();
+        $rs = $this->repository->with('details')->where('url', $url)->first();
 
         if (!$rs) {
             return redirect()->back();
         }
 
+        if($rs->details->count()){
+            return redirect()->back()->with('error', 'Existem detalhes nesse plano, portanto não pode deletar');
+        }
+
         $rs->delete();
 
-        return redirect()->route('admin.plans.index');
+        return redirect()->route('admin.plans.index')->with('warning', 'Plano deletado com sucesso');
     }
 }

@@ -34,4 +34,9 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
     });
 });
 
+Breadcrumbs::for('admin.plans.detail.create', function(BreadcrumbTrail $trail, string|int $id, string $title){
+    $trail->parent("admin.plans.show", $id, $title);
+    $trail->push('Detalhe do plano');
+});
+
 Breadcrumbs::resource('admin.plans', 'Planos');
