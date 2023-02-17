@@ -43,6 +43,7 @@
                         <td>{{ number_format($plan->price, 2, ',', '.') }}</td>
                         <td>
                             <div class="btn-group">
+                                <a href="{{ route('admin.plans.profiles.index', $plan->url) }}" class='btn btn-sm btn-outline-info'><i class='far fa-address-book'></i></a>
                                 <a href="{{ route('admin.plans.details.index', $plan->url) }}" class='btn btn-sm btn-outline-info'>Detalhe</a>
                                 <a href="{{ route('admin.plans.show', $plan->url) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
                                 <a href="{{ route('admin.plans.edit', $plan->url) }}" class='btn btn-sm btn-outline-info'>Editar</a>

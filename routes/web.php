@@ -5,7 +5,8 @@ use App\Http\Controllers\Admin\{
     PermissionController,
     PlanController,
     ProfileController,
-    PermissionProfileController
+    PermissionProfileController,
+    PlanProfileController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,8 @@ Route::group([
         'as' => 'plans.'
     ], function () {
         Route::resource('details', DetailPlanController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('profiles', PlanProfileController::class)->only(['index', 'destroy']);
+        Route::put('profiles', [PlanProfileController::class, 'update'])->name('profiles.store');
     });
 
     Route::group([

@@ -32,4 +32,11 @@ class Plan extends Model
     {
         return $this->hasMany(DetailPlan::class)->orderBy('name');
     }
+
+
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
 }

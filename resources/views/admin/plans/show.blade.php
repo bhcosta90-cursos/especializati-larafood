@@ -25,7 +25,8 @@
 
             @include('admin.includes.alerts')
 
-            <a href="{{ route('admin.plans.details.index', $rs->url) }}" class='btn btn-sm btn-outline-info'>Detalhe</a>
+            <a href="{{ route('admin.plans.profiles.index', $rs->url) }}" class='btn btn-sm btn-outline-info'><i class='far fa-address-book'></i></a>
+            <a href="{{ route('admin.plans.details.index', $rs->url) }}" class='btn btn-sm btn-outline-info ml-3'>Detalhe</a>
             {!! Form::open(['route' => ['admin.plans.destroy', $rs->url], 'method' => 'delete', 'class' => 'form-delete d-inline ml-3']) !!}
             <button type='submit' class='btn btn-outline-danger btn-sm'>
                 <i class='fas fa-trash'></i>
@@ -49,6 +50,26 @@
                     @foreach ($rs->details as $detail)
                     <tr>
                         <td>{{ $detail->name }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+
+    @if($rs->profiles->count())
+        <div class='card'>
+            <div class='card-header'><h4>Perfis do plano</h4></div>
+            <table class='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rs->profiles as $profile)
+                    <tr>
+                        <td>{{ $profile->name }}</td>
                     </tr>
                     @endforeach
                 </tbody>

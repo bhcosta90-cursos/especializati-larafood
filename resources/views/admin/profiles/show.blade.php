@@ -24,7 +24,7 @@
 
     @if($rs->permissions->count())
         <div class='card'>
-            {{-- <div class='card-header'><h4><a href="{{ route('admin.plan.detail.index', $rs->url) }}">Detalhes do plano</a></h4></div> --}}
+            <div class='card-header'><h4>Permissão do perfil</h4></div>
             <table class='table table-condensed'>
                 <thead>
                     <tr>
@@ -35,6 +35,26 @@
                     @foreach ($rs->permissions as $permission)
                     <tr>
                         <td>{{ $permission->name }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+
+    @if($rs->plans->count())
+        <div class='card'>
+            <div class='card-header'><h4>Planos do perfil</h4></div>
+            <table class='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rs->plans as $plans)
+                    <tr>
+                        <td>{{ $plans->name }}</td>
                     </tr>
                     @endforeach
                 </tbody>
