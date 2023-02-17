@@ -19,6 +19,25 @@
             </button>
             {!! Form::close() !!}
         </div>
-
     </div>
+
+    @if($rs->profiles->count())
+        <div class='card'>
+            {{-- <div class='card-header'><h4><a href="{{ route('admin.plan.detail.index', $rs->url) }}">Detalhes do plano</a></h4></div> --}}
+            <table class='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rs->profiles as $profile)
+                    <tr>
+                        <td>{{ $profile->name }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 @stop

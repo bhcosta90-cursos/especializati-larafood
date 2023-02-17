@@ -3,7 +3,7 @@
 @section('title', 'Planos')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.plans.detail.create', $url, $title) }}
+    {{ Breadcrumbs::render('admin.plans.details.index', $url, $title) }}
     <hr />
     <h1>Detalhes do plano</h1>
 @stop
@@ -29,7 +29,7 @@
                             <td>{{ $detail->name }}</td>
                             <td>
                                 <div class="btn-group">
-                                    {!! Form::open(['route' => ['admin.plan.detail.destroy', $url, $detail->id], 'method' => 'delete', 'class' => 'form-delete']) !!}
+                                    {!! Form::open(['route' => ['admin.plans.details.destroy', $url, $detail->id], 'method' => 'delete', 'class' => 'form-delete']) !!}
                                     <button type='submit' class='btn btn-outline-danger'>
                                         <i class='fas fa-trash'></i>
                                         Deletar

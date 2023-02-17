@@ -14,7 +14,7 @@ class DetailPlanController extends Controller
         //
     }
 
-    public function create(string $url, FormSupport $formSupport)
+    public function index(string $url, FormSupport $formSupport)
     {
         $rs = $this->repository->where('url', $url)->first();
         if (!$rs) {
@@ -22,7 +22,7 @@ class DetailPlanController extends Controller
         }
 
         $details = $rs->details()->get();
-        $form = $formSupport->run(\App\Forms\Admin\DetailPlanForm::class, route('admin.plan.detail.store', $url));
+        $form = $formSupport->run(\App\Forms\Admin\DetailPlanForm::class, route('admin.plans.details.store', $url));
         $title = $rs->name;
         return view('admin.plans.details.index', compact('details', 'form', 'url', 'title'));
     }

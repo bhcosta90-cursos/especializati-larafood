@@ -43,6 +43,7 @@
                             <div class="btn-group">
                                 <a href="{{ route('admin.profiles.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
                                 <a href="{{ route('admin.profiles.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
+                                <a href="{{ route('admin.profiles.permissions.index', $profile->id) }}" class='btn btn-sm btn-outline-primary'><i class='fas fa-lock'></i></a>
                             </div>
                         </td>
                     </tr>

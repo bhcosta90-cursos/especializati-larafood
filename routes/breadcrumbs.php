@@ -34,9 +34,14 @@ Breadcrumbs::macro('resource', function (string $name, string $title) {
     });
 });
 
-Breadcrumbs::for('admin.plans.detail.create', function(BreadcrumbTrail $trail, string|int $id, string $title){
+Breadcrumbs::for('admin.plans.details.index', function (BreadcrumbTrail $trail, string|int $id, string $title) {
     $trail->parent("admin.plans.show", $id, $title);
     $trail->push('Detalhe do plano');
+});
+
+Breadcrumbs::for('admin.profiles.permissions.index', function (BreadcrumbTrail $trail, string|int $id, string $title) {
+    $trail->parent("admin.profiles.show", $id, $title);
+    $trail->push('Detalhe do perfil');
 });
 
 Breadcrumbs::resource('admin.plans', 'Planos');

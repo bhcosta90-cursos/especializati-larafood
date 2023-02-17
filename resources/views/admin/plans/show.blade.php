@@ -25,8 +25,9 @@
 
             @include('admin.includes.alerts')
 
-            {!! Form::open(['route' => ['admin.plans.destroy', $rs->url], 'method' => 'delete', 'class' => 'form-delete']) !!}
-            <button type='submit' class='btn btn-outline-danger'>
+            <a href="{{ route('admin.plans.details.index', $rs->url) }}" class='btn btn-sm btn-outline-info'>Detalhe</a>
+            {!! Form::open(['route' => ['admin.plans.destroy', $rs->url], 'method' => 'delete', 'class' => 'form-delete d-inline ml-3']) !!}
+            <button type='submit' class='btn btn-outline-danger btn-sm'>
                 <i class='fas fa-trash'></i>
                 Deletar
             </button>
