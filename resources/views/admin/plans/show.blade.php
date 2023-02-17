@@ -34,4 +34,24 @@
         </div>
 
     </div>
+
+    @if($rs->details->count())
+        <div class='card'>
+            <div class='card-header'><h4>Detalhes do plano</h4></div>
+            <table class='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rs->details as $detail)
+                    <tr>
+                        <td>{{ $detail->name }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 @stop

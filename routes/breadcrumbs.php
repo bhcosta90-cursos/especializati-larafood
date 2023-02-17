@@ -40,3 +40,4 @@ Breadcrumbs::for('admin.plans.detail.create', function(BreadcrumbTrail $trail, s
 });
 
 Breadcrumbs::resource('admin.plans', 'Planos');
+Breadcrumbs::resource('admin.profiles', 'Perfis');

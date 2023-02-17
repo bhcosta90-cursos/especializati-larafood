@@ -297,6 +297,13 @@ return [
             'icon' => 'fas fa-list-alt',
             // 'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Perfis',
+            'url'  => 'admin/profiles',
+            'active' => ['admin/profiles*'],
+            'icon' => 'fas fa-list-alt',
+            // 'can'  => 'manage-blog',
+        ],
     ],
 
     'menu2' => [

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Perfis')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.plans.index') }}
+    {{ Breadcrumbs::render('admin.profiles.index') }}
     <hr />
     <h1>
-        Planos
-        <a class='btn btn-outline-primary' href="{{ route('admin.plans.create') }}">
+        Perfis
+        <a class='btn btn-outline-primary' href="{{ route('admin.profiles.create') }}">
             <i class='fas fa-plus-square'></i>
             Cadastrar
         </a>
@@ -32,20 +32,17 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Preço</th>
                         <th style='width:120px'>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($plans as $plan)
+                    @foreach ($profiles as $profile)
                     <tr>
-                        <td>{{ $plan->name }}</td>
-                        <td>{{ number_format($plan->price, 2, ',', '.') }}</td>
+                        <td>{{ $profile->name }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('admin.plan.detail.create', $plan->url) }}" class='btn btn-sm btn-outline-info'>Detalhe</a>
-                                <a href="{{ route('admin.plans.show', $plan->url) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
-                                <a href="{{ route('admin.plans.edit', $plan->url) }}" class='btn btn-sm btn-outline-info'>Editar</a>
+                                <a href="{{ route('admin.profiles.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
+                                <a href="{{ route('admin.profiles.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
                             </div>
                         </td>
                     </tr>
@@ -53,10 +50,9 @@
                 </tbody>
             </table>
         </div>
-
-        @if($plans->lastPage() > 1)
+        @if($profiles->lastPage() > 1)
             <div class='card-footer'>
-                {!! $plans->appends(request()->all())->links() !!}
+                {!! $profiles->appends(request()->all())->links() !!}
             </div>
         @endif
     </div>
