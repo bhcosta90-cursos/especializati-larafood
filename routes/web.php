@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{DetailPlanController, PlanController, ProfileController};
+use App\Http\Controllers\Admin\{DetailPlanController, PermissionController, PlanController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +28,7 @@ Route::group([
 ], function(){
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
+    Route::resource('permissions', PermissionController::class);
 
     Route::group([
         'prefix' => '{url}',
