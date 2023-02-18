@@ -32,6 +32,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>E-mail</th>
                         <th style='width:120px'>Ações</th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                     @foreach ($profiles as $profile)
                     <tr>
                         <td>{{ $profile->name }}</td>
+                        <td>{{ $profile->email }}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="{{ route('admin.users.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>

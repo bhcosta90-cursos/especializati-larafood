@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,11 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids, SoftDeletes;
+
+    public function scopeByCompany(Builder $query, ?string $company = null)
+    {
+        return $query->where('company_id', $company ?: auth()->user()->company_id);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +37,8 @@ class User extends Authenticatable
     {
         return $this->where(function ($query) use ($data) {
             if (!empty($filter = $data['search'] ?? null)) {
-                $query->where('name', 'like', "%{$filter}%");
+                $query->where('name', 'like', "%{$filter}%")
+                    ->orWhere('email', $filter);
             }
         });
     }

@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $profiles = $this->repository->search($request->all())->latest()->paginate();
+        $profiles = $this->repository->search($request->all())->byCompany()->latest()->paginate();
         return view('admin.users.index', compact('profiles'));
     }
 
@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function edit(FormSupport $formSupport, string $id)
     {
-        $rs = $this->repository->find($id);
+        $rs = $this->repository->byCompany()->find($id);
         if (!$rs) {
             return redirect()->back();
         }
@@ -57,7 +57,7 @@ class UserController extends Controller
     {
         $data = $formSupport->data(\App\Forms\Admin\UserForm::class);
 
-        $rs = $this->repository->find($id);
+        $rs = $this->repository->byCompany()->find($id);
         if (!$rs) {
             return redirect()->back();
         }
@@ -68,7 +68,7 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $rs = $this->repository->find($id);
+        $rs = $this->repository->byCompany()->find($id);
         if (!$rs) {
             return redirect()->back();
         }
@@ -77,7 +77,7 @@ class UserController extends Controller
 
     public function destroy(string $id)
     {
-        $rs = $this->repository->find($id);
+        $rs = $this->repository->byCompany()->find($id);
 
         if (!$rs) {
             return redirect()->back();
