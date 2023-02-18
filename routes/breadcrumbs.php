@@ -39,6 +39,11 @@ Breadcrumbs::for('admin.plans.details.index', function (BreadcrumbTrail $trail, 
     $trail->push('Detalhe do plano');
 });
 
+Breadcrumbs::for('admin.plans.profiles.index', function (BreadcrumbTrail $trail, string|int $id, string $title) {
+    $trail->parent("admin.plans.show", $id, $title);
+    $trail->push('Perfis do plano');
+});
+
 Breadcrumbs::for('admin.profiles.permissions.index', function (BreadcrumbTrail $trail, string|int $id, string $title) {
     $trail->parent("admin.profiles.show", $id, $title);
     $trail->push('Detalhe do perfil');

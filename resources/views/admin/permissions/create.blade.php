@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões')
+@section('title', 'Cadastro de permissão')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.permissions.create') }}

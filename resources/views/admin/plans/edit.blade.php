@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Editar plano')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.plans.edit', $form->getModel()->url, $form->getModel()->name) }}

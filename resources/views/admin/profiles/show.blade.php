@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalhe do Perfil')
+@section('title', 'Detalhe do perfil')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.profiles.show', $rs->id, $rs->name) }}
     <hr />
-    <h1>Detalhe do Perfil - <strong>{{ $rs->name }}</strong></h1>
+    <h1>Detalhe do perfil - <strong>{{ $rs->name }}</strong></h1>
 @stop
 
 @section('content')

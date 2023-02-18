@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Perfis')
+@section('title', 'Editar perfil')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.profiles.edit', $form->getModel()->id, $form->getModel()->name) }}

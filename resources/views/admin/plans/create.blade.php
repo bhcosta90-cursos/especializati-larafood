@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Cadastro de plano')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.plans.create') }}

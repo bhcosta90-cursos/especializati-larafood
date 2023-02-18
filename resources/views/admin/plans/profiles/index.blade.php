@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Perfis do plano')
 
 @section('content_header')
-    {{-- {{ Breadcrumbs::render('admin.profiles.permissions.index', $id, $title) }} --}}
+    {{ Breadcrumbs::render('admin.plans.profiles.index', $url, $title) }}
     <hr />
     <h1>Perfis do plano</h1>
 @stop

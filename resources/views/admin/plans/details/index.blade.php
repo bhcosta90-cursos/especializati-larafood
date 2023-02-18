@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Detalhes do plano')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.plans.details.index', $url, $title) }}
