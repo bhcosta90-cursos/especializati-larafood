@@ -311,6 +311,13 @@ return [
             'icon' => 'fas fa-lock',
             // 'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Usuários',
+            'url'  => 'admin/users',
+            'active' => ['admin/users*'],
+            'icon' => 'fas fa-users',
+            // 'can'  => 'manage-blog',
+        ],
     ],
 
     'menu2' => [

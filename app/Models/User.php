@@ -6,13 +6,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +26,15 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function search(array $data)
+    {
+        return $this->where(function ($query) use ($data) {
+            if (!empty($filter = $data['search'] ?? null)) {
+                $query->where('name', 'like', "%{$filter}%");
+            }
+        });
+    }
 
     /**
      * The attributes that should be hidden for serialization.
