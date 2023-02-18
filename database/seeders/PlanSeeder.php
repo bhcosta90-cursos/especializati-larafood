@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Plan;
-use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +22,7 @@ class PlanSeeder extends Seeder
             'name' => 'Business',
             'url' => 'business',
             'price' => 499.99,
-            'created_at' => Carbon::now(),
+            'created_at' => now(),
         ]);
 
         Plan::insert([
@@ -31,7 +30,7 @@ class PlanSeeder extends Seeder
             'name' => 'Premium',
             'url' => 'premium',
             'price' => 199.99,
-            'created_at' => Carbon::now()->addSeconds(1),
+            'created_at' => now()->addSeconds(1),
         ]);
 
         Plan::insert([
@@ -39,7 +38,7 @@ class PlanSeeder extends Seeder
             'name' => 'Free',
             'url' => 'free',
             'price' => 0.00,
-            'created_at' => Carbon::now()->addSeconds(2),
+            'created_at' => now()->addSeconds(2),
         ]);
     }
 }

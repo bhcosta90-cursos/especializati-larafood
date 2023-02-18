@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
-use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,12 +26,12 @@ class CompanySeeder extends Seeder
             'email' => 'company@test.com.br',
             'logo' => null,
             'active' => 'Y',
-            'subscription' => Carbon::now(),
-            'expires_at' => Carbon::now()->addMonth(),
+            'subscription' => now(),
+            'expires_at' => now()->addMonth(),
             'subscription_id' => null,
             'subscription_active' => true,
             'subscription_suspended' => false,
-            'created_at' => Carbon::now(),
+            'created_at' => now(),
         ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -54,7 +53,7 @@ class DetailPlanSeeder extends Seeder
                     'id' => str()->uuid(),
                     'plan_id' => $plan['id'],
                     'name' => $detail,
-                    'created_at' => Carbon::now()->addSecond($k + $j)
+                    'created_at' => now()->addSecond($k + $j)
                 ]);
             }
         }

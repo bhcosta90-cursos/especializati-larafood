@@ -20,7 +20,7 @@ Route::group(['as' => 'site.'], function () {
 
 Auth::routes();
 
-Route::get('/home', [PlanController::class, 'index'])->name('home');
+Route::middleware(['auth'])->get('/home', [PlanController::class, 'index'])->name('home');
 
 Route::group([
     'prefix' => 'admin',

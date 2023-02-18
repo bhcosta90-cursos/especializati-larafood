@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Support\PlanSupport;
 
 class HomeController extends Controller
 {
@@ -16,21 +14,13 @@ class HomeController extends Controller
         return view('site.home.index', compact('plans'));
     }
 
-    public function plan(string $url)
+    public function plan(string $url, PlanSupport $planSupport)
     {
         $rs = Plan::where('url', $url)->first();
         if (!$rs) {
             return redirect()->back();
         }
 
-        $date = Carbon::now()->getTimestamp();
-        $random = str()->random(15);
-
-        return redirect()->route('register', [
-            'plan' => $rs->id,
-            'date' => $date,
-            'random' => $random,
-            'token' => base64_encode(Hash::make($rs->id . $date . $random)),
-        ]);
+        return redirect()->route('register', $planSupport->generateWithToken($rs->id));
     }
 }

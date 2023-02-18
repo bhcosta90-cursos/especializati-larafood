@@ -23,8 +23,8 @@ return new class extends Migration
             $table->enum('active', ['Y', 'N'])->default('Y')->comment('Status tenant (se inativar \'N\' ele perde o acesso ao sistema)');
 
             // Subscription
-            $table->date('subscription')->nullable()->comment('Data que se inscreveu');
-            $table->date('expires_at')->nullable()->comment('Data que expira o acesso');
+            $table->date('subscription')->comment('Data que se inscreveu');
+            $table->date('expires_at')->comment('Data que expira o acesso');
             $table->string('subscription_id', 255)->nullable()->comment('Identificado do Gateway de pagamento');
             $table->boolean('subscription_active')->default(false)->comment('Assinatura ativa (porque pode cancelar)');
             $table->boolean('subscription_suspended')->default(false)->comment('Assinatura cancelada');

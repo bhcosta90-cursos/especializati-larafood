@@ -12,6 +12,7 @@ class Company extends Model
     use HasFactory, HasUuids, SoftDeletes;
 
     protected $fillable = [
+        'plan_id',
         'cnpj',
         'name',
         'url',
@@ -24,4 +25,9 @@ class Company extends Model
         'subscription_active',
         'subscription_suspended',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }
