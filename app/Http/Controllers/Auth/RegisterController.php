@@ -83,7 +83,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'plan' => ['required', 'string', 'min:3', 'max:255', 'exists:plans,id'],
             'company_name' => ['required', 'string', 'min:3', 'max:255', 'unique:companies,name'],
-            'company_cnpj' => ['required', 'string', 'min:3', 'max:255', 'unique:companies,cnpj'],
+            'company_cnpj' => ['required', 'numeric', 'min:14', 'max:14', 'unique:companies,cnpj'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
