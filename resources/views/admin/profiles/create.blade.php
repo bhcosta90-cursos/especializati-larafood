@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Perfis')
+@section('title', 'Cadastro de novo perfil')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.profiles.create') }}

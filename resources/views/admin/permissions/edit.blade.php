@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões')
+@section('title', 'Editar permissão')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.permissions.edit', $form->getModel()->id, $form->getModel()->name) }}

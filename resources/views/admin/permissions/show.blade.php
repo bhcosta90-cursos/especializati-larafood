@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalhe do Permissão')
+@section('title', 'Detalhe da permissão')
 
 @section('content_header')
     {{ Breadcrumbs::render('admin.permissions.show', $rs->id, $rs->name) }}
     <hr />
-    <h1>Detalhe do Permissão - <strong>{{ $rs->name }}</strong></h1>
+    <h1>Detalhe da permissão - <strong>{{ $rs->name }}</strong></h1>
 @stop
 
 @section('content')
