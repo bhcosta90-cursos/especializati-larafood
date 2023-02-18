@@ -42,15 +42,19 @@ class DetailPlanSeeder extends Seeder
             ],
         ];
 
-        foreach($data as $plan) {
-            foreach($plan['details'] as $detail){
-                DB::table('detail_plans')->insert([
+        $newData = [];
+
+        foreach ($data as $k => $plan) {
+            foreach ($plan['details'] as $j => $detail) {
+                array_push($newData, [
                     'id' => str()->uuid(),
                     'plan_id' => $plan['id'],
                     'name' => $detail,
-                    'created_at' => Carbon::now()->addSecond(1),
+                    'created_at' => Carbon::now()->addSecond($k + $j)
                 ]);
             }
         }
+
+        DB::table('detail_plans')->insert($newData);
     }
 }
