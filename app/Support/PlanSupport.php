@@ -16,7 +16,7 @@ class PlanSupport
             'plan' => $id,
             'date' => $date,
             'random' => $random,
-            'token' => base64_encode(Hash::make(config('hashing.plan') . $id . $date . $random)),
+            'token' => base64_encode(bcrypt(config('hashing.plan') . $id . $date . $random)),
         ];
     }
 

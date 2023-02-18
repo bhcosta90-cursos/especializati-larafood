@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\{
     PlanController,
     ProfileController,
     PermissionProfileController,
-    PlanProfileController
+    PlanProfileController,
+    UserController
 };
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::group([
 ], function () {
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
+    Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
 
     Route::group([

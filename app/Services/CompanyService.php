@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Company;
 use App\Models\Plan;
-use Illuminate\Support\Facades\Hash;
 
 class CompanyService
 {
@@ -30,7 +29,7 @@ class CompanyService
         return $company->users()->create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
     }
 }
