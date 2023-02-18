@@ -11,7 +11,12 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::group(['as' => 'site.'], function () {
+    Route::group(['as' => 'home.'], function () {
+        Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/plan/{plan}', [HomeController::class, 'plan'])->name('plan');
+    });
+});
 
 Auth::routes();
 

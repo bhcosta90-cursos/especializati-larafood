@@ -14,6 +14,10 @@ class PlanSeeder extends Seeder
      */
     public function run(): void
     {
+        if (Plan::count()) {
+            return;
+        }
+
         Plan::insert([
             'id' => '471a4139-4c96-498d-b1b2-546169a8e3cd',
             'name' => 'Business',

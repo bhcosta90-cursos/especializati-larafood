@@ -13,6 +13,10 @@ class DetailPlanSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('detail_plans')->count()) {
+            return;
+        }
+
         $data = [
             [
                 "id" => "b6e78a4f-ee09-45c0-b5a1-cfd38bdfd21f",

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="pricingTable-signup">
-                    <a href="#{{$plan->id}}">Assinar</a>
+                    <a href="{{route('site.home.plan', $plan->url)}}">Assinar</a>
                 </div>
             </div>
         </div>
