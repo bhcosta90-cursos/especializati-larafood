@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PlanSupport
 {
-    public function __construct(private Plan $plan)
-    {
-    }
-
-    public function generateWithToken(string $id)
+    public static function generateWithToken(string $id)
     {
         $date = now()->getTimestamp();
         $random = str()->random(15);
@@ -24,7 +20,7 @@ class PlanSupport
         ];
     }
 
-    public function validateWithToken(string $id, string $date, string $random, string $token)
+    public static function validateWithToken(string $id, string $date, string $random, string $token)
     {
         $token = base64_decode($token);
         $hash = config('hashing.plan') . $id . $date . $random;

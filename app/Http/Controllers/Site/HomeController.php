@@ -21,6 +21,6 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->route('register', $planSupport->generateWithToken($rs->id));
+        return redirect()->route('register', PlanSupport::generateWithToken($rs->id));
     }
 }

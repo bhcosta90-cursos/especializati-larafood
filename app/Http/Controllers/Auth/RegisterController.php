@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use App\Models\Plan;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Services\CompanyService;
 use App\Support\PlanSupport;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
@@ -30,6 +28,8 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    private Plan $plan;
+
     public function showRegistrationForm(Request $request)
     {
         $plan = Plan::find($request->plan);
@@ -38,7 +38,7 @@ class RegisterController extends Controller
             return redirect()->route('site.home.index');
         }
 
-        if (!$this->planSupport->validateWithToken($plan->id, $request->date, $request->random, $request->token)) {
+        if (!PlanSupport::validateWithToken($plan->id, $request->date, $request->random, $request->token)) {
             return redirect()->route('site.home.index');
         }
 
@@ -57,7 +57,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(private PlanSupport $planSupport)
+    public function __construct()
     {
         $this->middleware('guest');
     }
@@ -70,13 +70,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $plan = Plan::find($data['plan']);
+        $this->plan = Plan::find($data['plan']);
 
-        if (!$plan) {
+        if (!$this->plan) {
             return redirect()->route('site.home.index');
         }
 
-        if (!$this->planSupport->validateWithToken($plan->id, $data['date'], $data['random'], $data['token'])) {
+        if (!PlanSupport::validateWithToken($this->plan->id, $data['date'], $data['random'], $data['token'])) {
             return redirect()->route('site.home.index');
         }
 
@@ -100,23 +100,8 @@ class RegisterController extends Controller
     {
         try {
             DB::beginTransaction();
-            $objCompany = Company::create([
-                'plan_id' => $data['plan'],
-                'email' => $data['email'],
-                'name' => $data['company_name'],
-                'cnpj' => $data['company_cnpj'],
-                'subscription' => now(),
-                'expires_at' => now()->addDay(7),
-            ]);
-
-            $user = $objCompany->users()->create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
-
+            $user = app(CompanyService::class)->make($this->plan, $data);
             DB::commit();
-
             return $user;
         } catch (Throwable $e) {
             DB::rollBack();
