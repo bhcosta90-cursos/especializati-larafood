@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Company;
 use App\Models\Plan;
-use App\Observers\PlanObserver;
+use App\Observers\UrlObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Plan::observe(PlanObserver::class);
+        Plan::observe(UrlObserver::class);
+        Company::observe(UrlObserver::class);
     }
 }

@@ -49,4 +49,5 @@ return [
         'time' => 4,
     ],
 
+    'plan' => env('HASH_PLAN')
 ];
