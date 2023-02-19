@@ -18,6 +18,9 @@
                     <strong>Nome: </strong> {{ $rs->name }}
                 </li>
                 <li>
+                    <strong>URL: </strong> {{ $rs->url }}
+                </li>
+                <li>
                     <strong>Descrição: </strong> {{ $rs->description }}
                 </li>
             </ul>
