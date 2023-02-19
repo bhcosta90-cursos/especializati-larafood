@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\{
+    CategoryController,
     DetailPlanController,
     PermissionController,
     PlanController,
@@ -31,6 +32,7 @@ Route::group([
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
     Route::resource('users', UserController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('permissions', PermissionController::class);
 
     Route::group([

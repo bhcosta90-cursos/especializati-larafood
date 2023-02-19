@@ -3,7 +3,7 @@
 @section('title', 'Editar usuário')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.profiles.edit', $form->getModel()->id, $form->getModel()->name) }}
+    {{ Breadcrumbs::render('admin.users.edit', $form->getModel()->id, $form->getModel()->name) }}
     <hr />
     <h1>Editar usuário</h1>
 @stop

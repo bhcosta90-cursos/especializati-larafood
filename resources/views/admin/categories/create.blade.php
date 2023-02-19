@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastro de novo usuário')
+@section('title', 'Cadastro de nova categoria')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.users.create') }}
+    {{ Breadcrumbs::render('admin.categories.create') }}
     <hr />
-    <h1>Cadastrar novo usuário</h1>
+    <h1>Cadastrar nova categoria</h1>
 @stop
 
 @section('content')

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastro de novo usuário')
+@section('title', 'Editar categoria')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.users.create') }}
+    {{ Breadcrumbs::render('admin.categories.edit', $form->getModel()->id, $form->getModel()->name) }}
     <hr />
-    <h1>Cadastrar novo usuário</h1>
+    <h1>Editar categoria</h1>
 @stop
 
 @section('content')

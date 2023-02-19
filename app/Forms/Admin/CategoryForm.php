@@ -2,14 +2,14 @@
 
 namespace App\Forms\Admin;
 
-use Kris\LaravelFormBuilder\Field;
 use Kris\LaravelFormBuilder\Form;
+use Kris\LaravelFormBuilder\Field;
 
-class PlanForm extends Form
+class CategoryForm extends Form
 {
     public function buildForm()
     {
-        $url = request()->route('plan');
+        $url = request()->route('category');
         $this->add('name', Field::TEXT, [
             'label' => 'Nome',
             'rules' => "required|min:3|max:100|unique:plans,name,{$url},url,deleted_at,NULL"
@@ -18,11 +18,6 @@ class PlanForm extends Form
         $this->add('description', Field::TEXT, [
             'label' => 'Descrição',
             'rules' => 'nullable|min:3|max:100'
-        ]);
-
-        $this->add('price', Field::NUMBER, [
-            'label' => 'Preço',
-            'rules' => 'required|numeric|min:0|max:999999'
         ]);
     }
 }

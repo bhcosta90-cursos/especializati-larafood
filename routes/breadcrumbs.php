@@ -53,3 +53,4 @@ Breadcrumbs::resource('admin.plans', 'Planos');
 Breadcrumbs::resource('admin.profiles', 'Perfis');
 Breadcrumbs::resource('admin.users', 'Usuários');
 Breadcrumbs::resource('admin.permissions', 'Permissões');
+Breadcrumbs::resource('admin.categories', 'Categorias');

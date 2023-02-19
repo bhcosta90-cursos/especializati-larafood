@@ -318,6 +318,13 @@ return [
             'icon' => 'fas fa-users',
             // 'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Categorias',
+            'url'  => 'admin/categories',
+            'active' => ['admin/categories*'],
+            'icon' => 'fas fa-layer-group',
+            // 'can'  => 'manage-blog',
+        ],
     ],
 
     'menu2' => [

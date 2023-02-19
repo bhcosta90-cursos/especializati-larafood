@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Plan;
 use App\Observers\UrlObserver;
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Plan::observe(UrlObserver::class);
         Company::observe(UrlObserver::class);
+        Category::observe(UrlObserver::class);
     }
 }

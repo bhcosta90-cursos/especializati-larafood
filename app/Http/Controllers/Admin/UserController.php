@@ -39,7 +39,7 @@ class UserController extends Controller
             $obj->update($data);
         }
 
-        return redirect()->route('admin.users.index')->with('success', 'Perfil cadastrado com sucesso');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário cadastrado com sucesso');
     }
 
     public function edit(FormSupport $formSupport, string $id)
