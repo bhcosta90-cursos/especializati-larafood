@@ -12,6 +12,6 @@ class CompanyObserver
      */
     public function creating(Model $plan): void
     {
-        $plan->company_id = app(ManagerCompany::class)->getTenantIdentify();
+        $plan->company_id = app(ManagerCompany::class)->getCompanyIdentify();
     }
 }

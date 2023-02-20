@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         $total = 10;
         if (!User::count()) {
             User::factory()->create([
+                'id' => '35f0a4ed-9f55-4455-b756-f93d94f6fefb',
                 'company_id' => '95d7dd53-c9d7-4370-acf0-e36ffc157446',
                 'email' => 'bhcosta90@gmail.com',
                 'password' => '$2a$12$I/GxpjPeDRtkGVCQfxUn1eXvTLC9CVSz8CyLN2rQFZP7D5URQTbW2'

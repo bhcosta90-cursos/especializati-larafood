@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\{
     CategoryController,
     CategoryProductController,
     DetailPlanController,
+    HomeController as AdminHomeController,
     PermissionController,
     PlanController,
     ProfileController,
@@ -25,13 +26,20 @@ Route::group(['as' => 'site.'], function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->get('/home', [PlanController::class, 'index'])->name('home');
+Route::middleware(['auth'])->get('/home', [AdminHomeController::class, 'index'])->name('home');
 
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'middleware' => ['auth'],
 ], function () {
+    Route::get('test-acl', function(){
+        dump(auth()->user()->permissions());
+        dump(auth()->user()->hasPermission('permissao 1'));
+        dump(auth()->user()->hasPermission('permissao 2'));
+        dump(auth()->user()->isAdmin());
+        dump(auth()->user()->isCompany());
+    });
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
     Route::resource('users', UserController::class);

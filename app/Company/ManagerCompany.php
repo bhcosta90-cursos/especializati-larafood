@@ -4,18 +4,18 @@ namespace App\Company;
 
 class ManagerCompany
 {
-    public function getTenantIdentify()
+    public function getCompanyIdentify()
     {
         return auth()->check() ? auth()->user()->company_id : '';
     }
 
-    public function getTenant()
+    public function getCompany()
     {
-        return auth()->check() ? auth()->user()->tenant : '';
+        return auth()->check() ? auth()->user()->company : '';
     }
 
     public function isAdmin(): bool
     {
-        return in_array(auth()->user()->email, config('tenant.admins'));
+        return in_array(auth()->user()->email, config('company.admins'));
     }
 }

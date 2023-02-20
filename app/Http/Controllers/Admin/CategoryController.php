@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function __construct(private Category $repository)
     {
-        //
+        $this->middleware('can:categories');
     }
 
     public function index(Request $request)

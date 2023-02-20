@@ -14,6 +14,6 @@ class CompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where($model->getTable() . '.company_id', app(ManagerCompany::class)->getTenantIdentify());
+        $builder->where($model->getTable() . '.company_id', app(ManagerCompany::class)->getCompanyIdentify());
     }
 }

@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function __construct(private User $repository)
     {
-        //
+        $this->middleware('can:users');
     }
 
     public function index(Request $request)

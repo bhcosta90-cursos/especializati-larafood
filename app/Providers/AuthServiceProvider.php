@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Permission;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +23,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        foreach (Permission::get() as $permission) {
+            Gate::define($permission->name, fn (User $user) => $user->hasPermission($permission->name));
+        }
+
+        Gate::before(function (USer $user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+            return;
+        });
     }
 }

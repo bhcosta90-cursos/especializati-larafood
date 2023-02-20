@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('logo')->nullable();
 
-            $table->enum('active', ['Y', 'N'])->default('Y')->comment('Status tenant (se inativar \'N\' ele perde o acesso ao sistema)');
+            $table->enum('active', ['Y', 'N'])->default('Y')->comment('Status company (se inativar \'N\' ele perde o acesso ao sistema)');
 
             // Subscription
             $table->date('subscription')->comment('Data que se inscreveu');

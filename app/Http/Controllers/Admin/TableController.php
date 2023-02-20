@@ -11,7 +11,7 @@ class TableController extends Controller
 {
     public function __construct(private Table $repository)
     {
-        //
+        $this->middleware('can:tables');
     }
 
     public function index(Request $request)

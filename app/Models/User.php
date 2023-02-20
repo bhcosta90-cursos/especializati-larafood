@@ -43,6 +43,39 @@ class User extends Authenticatable
         });
     }
 
+    public function permissions(): array
+    {
+        $dataPermissions = [];
+
+        foreach ($this->company->plan->profiles as $profile) {
+            foreach ($profile->permissions as $permission) {
+                array_push($dataPermissions, $permission['name']);
+            }
+        }
+
+        return $dataPermissions;
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return in_array($permission, $this->permissions());
+    }
+
+    public function isAdmin()
+    {
+        return in_array($this->id, config('acl.admins'));
+    }
+
+    public function isCompany()
+    {
+        return !$this->isAdmin();
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

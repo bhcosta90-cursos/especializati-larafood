@@ -11,7 +11,7 @@ class CategoryProductController extends Controller
 {
     public function __construct(protected Product $repository)
     {
-        //
+        $this->middleware('can:products');
     }
 
     public function index(string $id, FormSupport $formSupport)

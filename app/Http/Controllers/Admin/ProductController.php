@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function __construct(private Product $repository)
     {
-        //
+        $this->middleware('can:products');
     }
 
     public function index(Request $request)
@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $data = $formSupport->data(\App\Forms\Admin\ProductForm::class);
 
-        $data['image'] = $data['image']->store('tenants/' . app(ManagerCompany::class)->getTenantIdentify() . '/products');
+        $data['image'] = $data['image']->store('companies/' . app(ManagerCompany::class)->getCompanyIdentify() . '/products');
 
         $obj = $this->repository->withTrashed()->firstOrCreate(['title' => $data['title']], $data);
         if ($obj->wasRecentlyCreated === false) {
@@ -67,7 +67,7 @@ class ProductController extends Controller
             if (Storage::exists($rs->image)) {
                 Storage::delete($rs->image);
             }
-            $data['image'] = $data['image']->store('tenants/' . app(ManagerCompany::class)->getTenantIdentify() . '/products');
+            $data['image'] = $data['image']->store('companies/' . app(ManagerCompany::class)->getCompanyIdentify() . '/products');
         } else {
             unset($data['image']);
         }
