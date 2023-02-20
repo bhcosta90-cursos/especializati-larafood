@@ -36,13 +36,6 @@ Route::group([
     'as' => 'admin.',
     'middleware' => ['auth'],
 ], function () {
-    Route::get('test-acl', function(){
-        dump(auth()->user()->permissions());
-        dump(auth()->user()->hasPermission('permissao 1'));
-        dump(auth()->user()->hasPermission('permissao 2'));
-        dump(auth()->user()->isAdmin());
-        dump(auth()->user()->isCompany());
-    });
     Route::resource('companies', CompanyController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
