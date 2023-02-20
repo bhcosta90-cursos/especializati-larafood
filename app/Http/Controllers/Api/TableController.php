@@ -21,6 +21,6 @@ class TableController extends Controller
 
     public function show(Request $request)
     {
-        return new TableResource($this->service->findById($request->category));
+        return new TableResource($this->service->findById($request->table));
     }
 }

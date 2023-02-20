@@ -17,7 +17,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'url' => $this->url,
+            'flag' => $this->url,
             'date_created' => now()::parse($this->created_at)->format('d/m/Y'),
         ];
     }
