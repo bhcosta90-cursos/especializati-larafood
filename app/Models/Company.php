@@ -32,7 +32,8 @@ class Company extends Model
         return $this->hasMany(User::class);
     }
 
-    public function plan(){
+    public function plan()
+    {
         return $this->belongsTo(Plan::class);
     }
 
@@ -41,9 +42,13 @@ class Company extends Model
         return $this->where(function ($query) use ($data) {
             if (!empty($filter = $data['search'] ?? null)) {
                 $query->where('name', 'like', "%{$filter}%")
-                ->orWhere('url', $filter)
-                ->orWhere('email', $filter)
-                ->orWhere('cnpj', $filter);
+                    ->orWhere('url', $filter)
+                    ->orWhere('email', $filter)
+                    ->orWhere('cnpj', $filter);
+            }
+
+            if (!empty($filter = $data['name'] ?? null)) {
+                $query->where('name', 'like', "%{$filter}%");
             }
         });
     }

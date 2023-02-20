@@ -4,9 +4,28 @@ namespace App\Services;
 
 use App\Models\Company;
 use App\Models\Plan;
+use App\Repositories\Contracts\CompanyRepository;
 
 class CompanyService
 {
+    public function __construct(protected CompanyRepository $companyRepository)
+    {
+        //
+    }
+
+    public function getAll($data = [])
+    {
+        return $this->companyRepository->getAll(
+            $data['limit'] ?? null,
+            $data['name'] ?? null
+        );
+    }
+
+    public function findById(string $id)
+    {
+        return $this->companyRepository->findById($id);
+    }
+
     public function make(Plan $plan, array $data)
     {
         $objCompany = $this->createCompany($plan, $data);

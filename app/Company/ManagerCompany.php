@@ -6,12 +6,16 @@ use App\Models\Permission;
 
 class ManagerCompany
 {
-    public function getCompanyIdentify()
+    public function getCompanyIdentify(): string
     {
+        if (substr(request()->getPathInfo(), 0, 4) === '/api') {
+            return request()->route('company') ?: '';
+        }
+
         return auth()->check() ? auth()->user()->company_id : '';
     }
 
-    public function getCompany()
+    public function getCompany(): string
     {
         return auth()->check() ? auth()->user()->company : '';
     }
@@ -21,7 +25,7 @@ class ManagerCompany
         return in_array(auth()->user()->email, config('company.admins'));
     }
 
-    public function getPermissionByCompany()
+    public function getPermissionByCompany(): array
     {
         if (!auth()->check()) {
             return [];
