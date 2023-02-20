@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\{
     CategoryController,
     CategoryProductController,
+    CompanyController,
     DetailPlanController,
     HomeController as AdminHomeController,
     PermissionController,
@@ -40,6 +41,7 @@ Route::group([
         dump(auth()->user()->isAdmin());
         dump(auth()->user()->isCompany());
     });
+    Route::resource('companies', CompanyController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
     Route::resource('users', UserController::class);

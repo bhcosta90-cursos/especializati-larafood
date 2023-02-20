@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,5 +34,17 @@ class Company extends Model
 
     public function plan(){
         return $this->belongsTo(Plan::class);
+    }
+
+    public function search(array $data)
+    {
+        return $this->where(function ($query) use ($data) {
+            if (!empty($filter = $data['search'] ?? null)) {
+                $query->where('name', 'like', "%{$filter}%")
+                ->orWhere('url', $filter)
+                ->orWhere('email', $filter)
+                ->orWhere('cnpj', $filter);
+            }
+        });
     }
 }

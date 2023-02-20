@@ -49,6 +49,7 @@ Breadcrumbs::for('admin.profiles.permissions.index', function (BreadcrumbTrail $
     $trail->push('Detalhe do perfil');
 });
 
+Breadcrumbs::resource('admin.companies', 'Empresas');
 Breadcrumbs::resource('admin.plans', 'Planos');
 Breadcrumbs::resource('admin.profiles', 'Perfis');
 Breadcrumbs::resource('admin.users', 'Usuários');

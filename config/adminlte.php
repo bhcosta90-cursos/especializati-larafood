@@ -291,6 +291,13 @@ return [
 
     'menu' => [
         [
+            'text' => 'Empresas',
+            'url'  => 'admin/companies',
+            'active' => ['admin/companies*'],
+            'icon' => 'fas fa-building',
+            'can'  =>  'companies',
+        ],
+        [
             'text' => 'Planos',
             'url'  => 'admin/plans',
             'active' => ['admin/plans*'],

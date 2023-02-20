@@ -25,7 +25,7 @@ class CompanySeeder extends Seeder
             'url' => 'company-name-s-a',
             'email' => 'company@test.com.br',
             'logo' => null,
-            'active' => 'Y',
+            'active' => true,
             'subscription' => now(),
             'expires_at' => now()->addMonth(),
             'subscription_id' => null,

@@ -1,17 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Produto')
+@section('title', 'Empresa')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.products.index') }}
+    {{ Breadcrumbs::render('admin.companies.index') }}
     <hr />
-    <h1>
-        Produto
-        <a class='btn btn-outline-primary' href="{{ route('admin.products.create') }}">
-            <i class='fas fa-plus-square'></i>
-            Cadastrar
-        </a>
-    </h1>
+    <h1>Empresa</h1>
 @stop
 
 @section('content')
@@ -19,7 +13,7 @@
         <div class='card-header'>
             <form class='form form-inline'>
                 <div class="input-group">
-                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Título ou descrição']) !!}
+                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Nome, url, CNPJ ou e-mail']) !!}
                     <div class="input-group-append">
                         {!! Form::submit('Filtrar', ['class' => 'btn btn-outline-secondary']) !!}
                   </div>
@@ -32,7 +26,10 @@
                 <thead>
                     <tr>
                         <th width="100">Imagem</th>
-                        <th>Título</th>
+                        <th>Nome</th>
+                        <th>URL</th>
+                        <th>E-mail</th>
+                        <th>CNPJ</th>
                         <th style='width:120px'>Ações</th>
                     </tr>
                 </thead>
@@ -40,14 +37,16 @@
                     @foreach ($profiles as $profile)
                     <tr>
                         <td>
-                            <img src="{{ url("storage/{$profile->image}") }}" alt="{{ $profile->title }}" style="max-width: 90px;">
+                            <img src="{{ url("storage/{$profile->logo}") }}" alt="{{ $profile->title }}" style="max-width: 90px;">
                         </td>
-                        <td>{{ $profile->title }}</td>
+                        <td>{{ $profile->name }}</td>
+                        <td>{{ $profile->url }}</td>
+                        <td>{{ $profile->email }}</td>
+                        <td>{{ $profile->cnpj }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('admin.products.categories.index', $profile->id) }}" class='btn btn-sm btn-outline-info'>Categorias</a>
-                                <a href="{{ route('admin.products.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
-                                <a href="{{ route('admin.products.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
+                                <a href="{{ route('admin.companies.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
+                                <a href="{{ route('admin.companies.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
                             </div>
                         </td>
                     </tr>

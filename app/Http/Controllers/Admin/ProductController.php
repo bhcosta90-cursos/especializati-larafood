@@ -64,7 +64,7 @@ class ProductController extends Controller
         }
 
         if (!empty($data['image'])) {
-            if (Storage::exists($rs->image)) {
+            if ($rs->image && Storage::exists($rs->image)) {
                 Storage::delete($rs->image);
             }
             $data['image'] = $data['image']->store('companies/' . app(ManagerCompany::class)->getCompanyIdentify() . '/products');
@@ -93,7 +93,7 @@ class ProductController extends Controller
             return redirect()->back();
         }
 
-        if (Storage::exists($rs->image)) {
+        if ($rs->image && Storage::exists($rs->image)) {
             Storage::delete($rs->image);
         }
         $rs->delete();
