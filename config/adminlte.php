@@ -332,6 +332,13 @@ return [
             'icon' => 'fas fa-hamburger',
             // 'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Mesas',
+            'url'  => 'admin/tables',
+            'active' => ['admin/tables*'],
+            'icon' => 'fas fa-tablet',
+            // 'can'  => 'manage-blog',
+        ],
     ],
 
     'menu2' => [

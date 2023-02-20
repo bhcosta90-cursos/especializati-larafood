@@ -19,7 +19,7 @@
         <div class='card-header'>
             <form class='form form-inline'>
                 <div class="input-group">
-                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Nome ou descrição']) !!}
+                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Título ou descrição']) !!}
                     <div class="input-group-append">
                         {!! Form::submit('Filtrar', ['class' => 'btn btn-outline-secondary']) !!}
                   </div>

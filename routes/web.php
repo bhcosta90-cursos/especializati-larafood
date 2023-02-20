@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\{
     PermissionProfileController,
     PlanProfileController,
     ProductController,
+    TableController,
     UserController
 };
 use App\Http\Controllers\Site\HomeController;
@@ -35,6 +36,7 @@ Route::group([
     Route::resource('profiles', ProfileController::class);
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('tables', TableController::class);
     Route::resource('products', ProductController::class);
     Route::resource('permissions', PermissionController::class);
 

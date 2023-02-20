@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Categoria')
+@section('title', 'Mesa')
 
 @section('content_header')
-    {{ Breadcrumbs::render('admin.categories.index') }}
+    {{ Breadcrumbs::render('admin.tables.index') }}
     <hr />
     <h1>
-        Categoria
-        <a class='btn btn-outline-primary' href="{{ route('admin.categories.create') }}">
+        Mesa
+        <a class='btn btn-outline-primary' href="{{ route('admin.tables.create') }}">
             <i class='fas fa-plus-square'></i>
             Cadastrar
         </a>
@@ -19,7 +19,7 @@
         <div class='card-header'>
             <form class='form form-inline'>
                 <div class="input-group">
-                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Nome']) !!}
+                    {!! Form::text('search', request('search'), ['class' => 'form-control', 'placeholder' => 'Identificador ou descrição']) !!}
                     <div class="input-group-append">
                         {!! Form::submit('Filtrar', ['class' => 'btn btn-outline-secondary']) !!}
                   </div>
@@ -31,18 +31,18 @@
             <table class='table table-condensed'>
                 <thead>
                     <tr>
-                        <th>Nome</th>
+                        <th>Identificador</th>
                         <th style='width:120px'>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($profiles as $profile)
                     <tr>
-                        <td>{{ $profile->name }}</td>
+                        <td>{{ $profile->identify }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('admin.categories.show', $profile->url) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
-                                <a href="{{ route('admin.categories.edit', $profile->url) }}" class='btn btn-sm btn-outline-info'>Editar</a>
+                                <a href="{{ route('admin.tables.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
+                                <a href="{{ route('admin.tables.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
                             </div>
                         </td>
                     </tr>
