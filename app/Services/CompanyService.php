@@ -21,9 +21,9 @@ class CompanyService
         );
     }
 
-    public function findById(string $id)
+    public function findByUrl(string $id)
     {
-        return $this->repository->findById($id);
+        return $this->repository->findByUrl($id);
     }
 
     public function make(Plan $plan, array $data)

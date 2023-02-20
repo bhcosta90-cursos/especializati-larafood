@@ -15,12 +15,13 @@ class ProductService
     {
         return $this->repository->getAll(
             $data['limit'] ?? null,
-            $data['title'] ?? null
+            $data['title'] ?? null,
+            $data['categories'] ?? [],
         );
     }
 
-    public function findById(string $id)
+    public function findByFlag(string $id)
     {
-        return $this->repository->findById($id);
+        return $this->repository->findByFlag($id);
     }
 }

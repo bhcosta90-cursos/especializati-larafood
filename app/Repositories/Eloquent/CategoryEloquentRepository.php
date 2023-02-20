@@ -17,8 +17,8 @@ class CategoryEloquentRepository implements CategoryRepository
         return $this->model->search(['name' => $name])->orderBy('name')->paginate(perPage: $perPage);
     }
 
-    public function findById(string $id)
+    public function findByUrl(string $url)
     {
-        return $this->model->find($id);
+        return $this->model->where('url', $url)->first();
     }
 }

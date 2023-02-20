@@ -13,13 +13,21 @@ class ProductEloquentRepository implements ProductRepository
         //
     }
 
-    public function getAll(?int $perPage = 15, string $title = null)
+    public function getAll(?int $perPage = 15, string $title = null, array $categories = [])
     {
-        return $this->model->search(['title' => $title])->orderBy('title')->paginate(perPage: $perPage);
+        return $this->model
+            ->search(['title' => $title])
+            ->where(function ($query) use ($categories) {
+                if ($categories) {
+                    $query->whereHas('categories', fn ($query) => $query->whereIn('url', $categories));
+                }
+            })
+            ->orderBy('title')
+            ->paginate(perPage: $perPage);
     }
 
-    public function findById(string $id)
+    public function findByFlag(string $flag)
     {
-        return $this->model->find($id);
+        return $this->model->where('flag', $flag)->first();
     }
 }
