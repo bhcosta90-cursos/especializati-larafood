@@ -6,5 +6,5 @@ interface CategoryRepository
 {
     public function getAll(?int $perPage = 15, string $name = null);
 
-    public function findById(string $id);
+    public function findByUrl(string $url);
 }

@@ -21,6 +21,6 @@ class CategoryController extends Controller
 
     public function show(Request $request)
     {
-        return new CategoryResource($this->service->findById($request->category));
+        return new CategoryResource($this->service->findByUrl($request->category));
     }
 }

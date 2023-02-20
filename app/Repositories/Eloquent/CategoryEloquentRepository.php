@@ -7,18 +7,18 @@ use App\Repositories\Contracts\CategoryRepository;
 
 class CategoryEloquentRepository implements CategoryRepository
 {
-    public function __construct(protected Category $company)
+    public function __construct(protected Category $model)
     {
         //
     }
 
     public function getAll(?int $perPage = 15, string $name = null)
     {
-        return $this->company->search(['name' => $name])->groupBy('name')->paginate(perPage: $perPage);
+        return $this->model->search(['name' => $name])->orderBy('name')->paginate(perPage: $perPage);
     }
 
-    public function findById(string $id)
+    public function findByUrl(string $url)
     {
-        return $this->company->find($id);
+        return $this->model->where('url', $url)->first();
     }
 }

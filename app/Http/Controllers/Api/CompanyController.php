@@ -22,6 +22,6 @@ class CompanyController extends Controller
 
     public function show(string $id)
     {
-        return new CompanyResource($this->companyService->findById($id));
+        return new CompanyResource($this->companyService->findByUrl($id));
     }
 }

@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Repositories\Contracts\{
     CategoryRepository,
     CompanyRepository,
+    ProductRepository,
     TableRepository
 };
 
 use App\Repositories\Eloquent\{
     CategoryEloquentRepository,
     CompanyEloquentRepository,
+    ProductEloquentRepository,
     TableEloquentRepository
 };
 
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CompanyRepository::class, CompanyEloquentRepository::class);
         $this->app->bind(CategoryRepository::class, CategoryEloquentRepository::class);
         $this->app->bind(TableRepository::class, TableEloquentRepository::class);
+        $this->app->bind(ProductRepository::class, ProductEloquentRepository::class);
     }
 
     /**
