@@ -52,15 +52,20 @@ Route::group([
     Route::resource('products', ProductController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
-    Route::get('roles/{id}/permissions', [PermissionRoleController::class, 'index'])->name('roles.permissions.index');
-    Route::put('roles/{id}/permissions', [PermissionRoleController::class, 'store'])->name('roles.permissions.store');
+    Route::group([
+        'as' => 'roles.permissions.',
+        'prefix' => 'roles/{id}/permissions'
+    ], function(){
+        Route::get('/', [PermissionRoleController::class, 'index'])->name('index');
+        Route::put('/', [PermissionRoleController::class, 'store'])->name('store');
+    });
 
     Route::group([
-        'prefix' => 'products/{id}',
-        'as' => 'products.'
+        'prefix' => 'products/{id}/categories',
+        'as' => 'products.categories.'
     ], function(){
-        Route::get('categories', [CategoryProductController::class, 'index'])->name('categories.index');
-        Route::put('categories', [CategoryProductController::class, 'store'])->name('categories.store');
+        Route::get('/', [CategoryProductController::class, 'index'])->name('index');
+        Route::put('/', [CategoryProductController::class, 'store'])->name('store');
     });
 
     Route::group([
