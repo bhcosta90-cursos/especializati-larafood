@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\{
     CategoryController,
+    CategoryProductController,
     DetailPlanController,
     PermissionController,
     PlanController,
@@ -36,6 +37,14 @@ Route::group([
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('permissions', PermissionController::class);
+
+    Route::group([
+        'prefix' => 'products/{id}',
+        'as' => 'products.'
+    ], function(){
+        Route::get('categories', [CategoryProductController::class, 'index'])->name('categories.index');
+        Route::put('categories', [CategoryProductController::class, 'store'])->name('categories.store');
+    });
 
     Route::group([
         'prefix' => 'plans/{url}',

@@ -45,6 +45,7 @@
                         <td>{{ $profile->title }}</td>
                         <td>
                             <div class="btn-group">
+                                <a href="{{ route('admin.products.categories.index', $profile->id) }}" class='btn btn-sm btn-outline-info'>Categorias</a>
                                 <a href="{{ route('admin.products.show', $profile->id) }}" class='btn btn-sm btn-outline-warning'>Ver</a>
                                 <a href="{{ route('admin.products.edit', $profile->id) }}" class='btn btn-sm btn-outline-info'>Editar</a>
                             </div>

@@ -33,4 +33,24 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+    @if($rs->categories->count())
+        <div class='card'>
+            <div class='card-header'><h4>Categorias do produto</h4></div>
+            <table class='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($rs->categories as $profile)
+                    <tr>
+                        <td>{{ $profile->name }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 @stop
