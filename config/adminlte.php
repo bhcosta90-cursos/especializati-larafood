@@ -325,6 +325,13 @@ return [
             'icon' => 'fas fa-layer-group',
             // 'can'  => 'manage-blog',
         ],
+        [
+            'text' => 'Produtos',
+            'url'  => 'admin/products',
+            'active' => ['admin/products*'],
+            'icon' => 'fas fa-hamburger',
+            // 'can'  => 'manage-blog',
+        ],
     ],
 
     'menu2' => [

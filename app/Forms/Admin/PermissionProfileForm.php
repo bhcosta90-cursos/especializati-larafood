@@ -9,6 +9,7 @@ class PermissionProfileForm extends Form
 {
     public function __construct(private Permission $permission)
     {
+        //
     }
 
     public function buildForm()
