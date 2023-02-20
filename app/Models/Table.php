@@ -22,7 +22,11 @@ class Table extends Model
         return $this->where(function ($query) use ($data) {
             if (!empty($filter = $data['search'] ?? null)) {
                 $query->where('identify', $filter)
-                ->orWhere('description', 'like', "%{$filter}%");
+                    ->orWhere('description', 'like', "%{$filter}%");
+            }
+
+            if (!empty($filter = $data['identify'] ?? null)) {
+                $query->where('identify', $filter);
             }
         });
     }

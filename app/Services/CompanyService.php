@@ -8,14 +8,14 @@ use App\Repositories\Contracts\CompanyRepository;
 
 class CompanyService
 {
-    public function __construct(protected CompanyRepository $companyRepository)
+    public function __construct(protected CompanyRepository $repository)
     {
         //
     }
 
     public function getAll($data = [])
     {
-        return $this->companyRepository->getAll(
+        return $this->repository->getAll(
             $data['limit'] ?? null,
             $data['name'] ?? null
         );
@@ -23,7 +23,7 @@ class CompanyService
 
     public function findById(string $id)
     {
-        return $this->companyRepository->findById($id);
+        return $this->repository->findById($id);
     }
 
     public function make(Plan $plan, array $data)

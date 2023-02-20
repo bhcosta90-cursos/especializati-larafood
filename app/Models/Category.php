@@ -24,6 +24,10 @@ class Category extends Model
                 $query->where('name', 'like', "%{$filter}%")
                 ->orWhere('description', 'like', "%{$filter}%");
             }
+
+            if (!empty($filter = $data['name'] ?? null)) {
+                $query->where('name', 'like', "%{$filter}%");
+            }
         });
     }
 }

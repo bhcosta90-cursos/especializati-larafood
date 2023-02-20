@@ -14,7 +14,7 @@ class CompanyEloquentRepository implements CompanyRepository
 
     public function getAll(?int $perPage = 15, string $name = null)
     {
-        return $this->company->search(['name' => $name])->paginate(perPage: $perPage);
+        return $this->company->search(['name' => $name])->orderBy('name')->paginate(perPage: $perPage);
     }
 
     public function findById(string $id)

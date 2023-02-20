@@ -12,7 +12,7 @@ class TableForm extends Form
         $id = request()->route('table');
         $this->add('identify', Field::TEXT, [
             'label' => 'Identificador',
-            'rules' => "required|min:3|max:100|unique:tables,id,{$id},id,deleted_at,NULL"
+            'rules' => "required|max:100|unique:tables,id,{$id},id,deleted_at,NULL"
         ]);
 
         $this->add('description', Field::TEXT, [

@@ -4,23 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Repositories\Contracts\CategoryRepository;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function __construct(protected CategoryRepository $categoryRepository)
+    public function __construct(protected CategoryService $service)
     {
         //
     }
 
     public function index(Request $request)
     {
-        return CategoryResource::collection($this->categoryRepository->getAll($request->limit, $request->name));
+        return CategoryResource::collection($this->service->getAll($request->all()));
     }
 
     public function show(Request $request)
     {
-        return new CategoryResource($this->categoryRepository->findById($request->category));
+        return new CategoryResource($this->service->findById($request->category));
     }
 }
