@@ -312,6 +312,13 @@ return [
             'can'  => 'profiles',
         ],
         [
+            'text' => 'Cargos',
+            'url'  => 'admin/roles',
+            'active' => ['admin/roles*'],
+            'icon' => 'fas fa-address-card',
+            'can'  => 'roles',
+        ],
+        [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'active' => ['admin/permissions*'],

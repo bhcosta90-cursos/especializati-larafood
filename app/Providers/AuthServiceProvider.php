@@ -24,10 +24,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         foreach (Permission::get() as $permission) {
-            Gate::define($permission->name, fn (User $user) => $user->hasPermission($permission->name));
+            Gate::define($permission->name, fn(User $user) => $user->hasPermission($permission->name));
         }
 
-        Gate::before(function (USer $user) {
+        Gate::before(function (User $user) {
             if ($user->isAdmin()) {
                 return true;
             }

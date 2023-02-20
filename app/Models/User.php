@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -28,6 +29,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'company_id',
+        'role_id',
         'name',
         'email',
         'password',
@@ -45,15 +47,19 @@ class User extends Authenticatable
 
     public function permissions(): array
     {
-        $dataPermissions = [];
+        return cache()->remember('permission.' . $this->id, 60 * 15, function () {
+            $permissionsPlan = $this->permissionsPlan();
+            $permissionsRole = $this->permissionsRole();
 
-        foreach ($this->company->plan->profiles as $profile) {
-            foreach ($profile->permissions as $permission) {
-                array_push($dataPermissions, $permission['name']);
+            $permissions = [];
+            foreach ($permissionsRole as $permission) {
+                if (in_array($permission, $permissionsPlan)) {
+                    array_push($permissions, $permission);
+                }
             }
-        }
 
-        return $dataPermissions;
+            return $permissions;
+        });
     }
 
     public function hasPermission(string $permission): bool
@@ -76,6 +82,11 @@ class User extends Authenticatable
         return $this->belongsTo(Company::class);
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -94,4 +105,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    private function permissionsRole(): array
+    {
+        $roles = $this->role()->with('permissions')->get();
+
+        $permissions = [];
+        foreach ($roles as $role) {
+            foreach ($role->permissions as $permission) {
+                array_push($permissions, $permission->name);
+            }
+        }
+
+        return $permissions;
+    }
+
+    private function permissionsPlan(): array
+    {
+        $tenant = Company::with('plan.profiles.permissions')->where('id', $this->company_id)->first();
+        $plan = $tenant->plan;
+
+        $permissions = [];
+        foreach ($plan->profiles as $profile) {
+            foreach ($profile->permissions as $permission) {
+                array_push($permissions, $permission->name);
+            }
+        }
+
+        return $permissions;
+    }
 }

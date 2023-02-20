@@ -9,8 +9,9 @@ use Kris\LaravelFormBuilder\Field;
 class CompanyForm extends Form
 {
     public function __construct(protected Plan $plan){
-
+        //
     }
+
     public function buildForm()
     {
         $this->add('plan_id', Field::SELECT, [

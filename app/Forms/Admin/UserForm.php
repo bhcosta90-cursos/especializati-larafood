@@ -2,13 +2,25 @@
 
 namespace App\Forms\Admin;
 
+use App\Models\Role;
 use Kris\LaravelFormBuilder\Field;
 use Kris\LaravelFormBuilder\Form;
 
 class UserForm extends Form
 {
+    public function __construct(protected Role $role)
+    {
+        //
+    }
+
     public function buildForm()
     {
+        $this->add('role_id', Field::SELECT, [
+            'label' => "Cargos",
+            'choices' => $this->role->orderBy('name')->pluck('name', 'id')->toArray(),
+            'empty_value' => "Selecione..."
+        ]);
+
         $id = request()->route('user');
         $this->add('name', Field::TEXT, [
             'label' => 'Nome',

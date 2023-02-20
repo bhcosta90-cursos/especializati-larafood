@@ -2,6 +2,8 @@
 
 namespace App\Company;
 
+use App\Models\Permission;
+
 class ManagerCompany
 {
     public function getCompanyIdentify()
@@ -17,5 +19,22 @@ class ManagerCompany
     public function isAdmin(): bool
     {
         return in_array(auth()->user()->email, config('company.admins'));
+    }
+
+    public function getPermissionByCompany()
+    {
+        if (!auth()->check()) {
+            return [];
+        }
+
+        $dataPermissions = [];
+
+        foreach (auth()->user()->company->plan->profiles as $profile) {
+            foreach ($profile->permissions as $permission) {
+                array_push($dataPermissions, $permission);
+            }
+        }
+
+        return $dataPermissions;
     }
 }

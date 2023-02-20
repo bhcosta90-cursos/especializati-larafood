@@ -57,3 +57,4 @@ Breadcrumbs::resource('admin.permissions', 'Permissões');
 Breadcrumbs::resource('admin.categories', 'Categorias');
 Breadcrumbs::resource('admin.products', 'Produtos');
 Breadcrumbs::resource('admin.tables', 'Mesas');
+Breadcrumbs::resource('admin.roles', 'Cargos');

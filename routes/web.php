@@ -10,8 +10,10 @@ use App\Http\Controllers\Admin\{
     PlanController,
     ProfileController,
     PermissionProfileController,
+    PermissionRoleController,
     PlanProfileController,
     ProductController,
+    RoleController,
     TableController,
     UserController
 };
@@ -49,6 +51,9 @@ Route::group([
     Route::resource('tables', TableController::class);
     Route::resource('products', ProductController::class);
     Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
+    Route::get('roles/{id}/permissions', [PermissionRoleController::class, 'index'])->name('roles.permissions.index');
+    Route::put('roles/{id}/permissions', [PermissionRoleController::class, 'store'])->name('roles.permissions.store');
 
     Route::group([
         'prefix' => 'products/{id}',
