@@ -40,7 +40,9 @@
                     @foreach ($profiles as $profile)
                     <tr>
                         <td>
-                            <img src="{{ url("storage/{$profile->image}") }}" alt="{{ $profile->title }}" style="max-width: 90px;">
+                            @if($profile->image)
+                                <img src="{{ url("storage/{$profile->image}") }}" alt="{{ $profile->title }}" style="max-width: 90px;">
+                            @endif
                         </td>
                         <td>{{ $profile->title }}</td>
                         <td>
