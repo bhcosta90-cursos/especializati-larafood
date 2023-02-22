@@ -26,4 +26,17 @@ class AuthController extends Controller
     {
         return $this->service->login($request->validated());
     }
+
+    public function me(Request $request)
+    {
+        $client = $request->user();
+        return new CustomerResource($client);
+    }
+
+    public function logout(Request $request)
+    {
+        $client = $request->user();
+        $client->tokens()->delete();
+        return response()->json([], 204);
+    }
 }
