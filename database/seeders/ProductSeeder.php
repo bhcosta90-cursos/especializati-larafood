@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'id' => '0d8bcfa3-e11f-4fca-a94d-c66d549cd4aa',
             'company_id' => '95d7dd53-c9d7-4370-acf0-e36ffc157446',
-            'price' => 50,
+            'price' => 65,
             'flag' => 'flag 2',
             'title' => 'Produto 2',
         ]);
@@ -36,7 +36,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'id' => '4dbdce31-7062-41e7-a586-a862398fa542',
             'company_id' => '95d7dd53-c9d7-4370-acf0-e36ffc157446',
-            'price' => 50,
+            'price' => 85,
             'flag' => 'flag 3',
             'title' => 'Produto 3',
         ]);

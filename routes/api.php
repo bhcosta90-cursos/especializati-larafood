@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\{
     CategoryController,
     CompanyController,
+    OrderController,
     ProductController,
     TableController
 };
@@ -31,5 +32,6 @@ Route::prefix('v1')->group(function () {
         Route::resource('categories', CategoryController::class)->only(['index', 'show']);
         Route::resource('tables', TableController::class)->only(['index', 'show']);
         Route::resource('products', ProductController::class)->only(['index', 'show']);
+        Route::resource('orders', OrderController::class)->only(['store', 'show']);
     });
 });

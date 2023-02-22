@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('identify')->index();
             $table->foreignUuid('company_id')->on('companies');
             $table->foreignUuid('customer_id')->nullable()->on('customers');
             $table->foreignUuid('table_id')->nullable()->on('tables');
