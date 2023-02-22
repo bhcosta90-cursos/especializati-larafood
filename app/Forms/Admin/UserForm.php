@@ -22,6 +22,7 @@ class UserForm extends Form
         ]);
 
         $id = request()->route('user');
+        $company = auth()->user()->company_id ?: "";
         $this->add('name', Field::TEXT, [
             'label' => 'Nome',
             'rules' => "required|string|min:3|max:100"
@@ -29,7 +30,7 @@ class UserForm extends Form
 
         $this->add('email', Field::EMAIL, [
             'label' => 'E-mail',
-            'rules' => "required|email|min:3|max:100|unique:users,id,{$id},id,deleted_at,NULL"
+            'rules' => "required|email|min:3|max:100|unique:users,id,{$id},id,deleted_at,NULL,company_id,{$company}"
         ]);
 
         if (empty($id)) {

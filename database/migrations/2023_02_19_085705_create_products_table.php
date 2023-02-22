@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('flag');
             $table->string('image');
             $table->double('price', 10, 2);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -21,4 +21,9 @@ class CompanyEloquentRepository implements CompanyRepository
     {
         return $this->model->where('url', $id)->first();
     }
+
+    public function findById(string $id)
+    {
+        return $this->model->find($id);
+    }
 }

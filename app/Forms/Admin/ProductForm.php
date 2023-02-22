@@ -10,9 +10,11 @@ class ProductForm extends Form
     public function buildForm()
     {
         $id = request()->route('product');
+        $company = auth()->user()->company_id ?: "";
+
         $this->add('title', Field::TEXT, [
             'label' => 'Nome',
-            'rules' => "required|min:3|max:100|unique:products,title,{$id},id,deleted_at,NULL"
+            'rules' => "required|min:3|max:100|unique:products,title,{$id},id,deleted_at,NULL,company_id,$company"
         ]);
 
         $this->add('flag', Field::TEXT, [

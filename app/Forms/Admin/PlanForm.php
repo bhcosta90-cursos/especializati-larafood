@@ -10,9 +10,10 @@ class PlanForm extends Form
     public function buildForm()
     {
         $url = request()->route('plan');
+        $company = auth()->user()->company_id ?: "";
         $this->add('name', Field::TEXT, [
             'label' => 'Nome',
-            'rules' => "required|min:3|max:100|unique:plans,name,{$url},url,deleted_at,NULL"
+            'rules' => "required|min:3|max:100|unique:plans,name,{$url},url,deleted_at,NULL,company_id,{$company}"
         ]);
 
         $this->add('description', Field::TEXT, [

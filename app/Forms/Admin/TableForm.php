@@ -10,9 +10,10 @@ class TableForm extends Form
     public function buildForm()
     {
         $id = request()->route('table');
+        $company = auth()->user()->company_id ?: "";
         $this->add('identify', Field::TEXT, [
             'label' => 'Identificador',
-            'rules' => "required|max:100|unique:tables,id,{$id},id,deleted_at,NULL"
+            'rules' => "required|max:100|unique:tables,id,{$id},id,deleted_at,NULL,company_id,{$company}"
         ]);
 
         $this->add('description', Field::TEXT, [

@@ -32,6 +32,10 @@ class CompanyService
         return $this->createUser($objCompany, $data);
     }
 
+    public function findById(string $id) {
+        return $this->repository->findById($id);
+    }
+
     private function createCompany(Plan $plan, array $data)
     {
         return $plan->companies()->create([
