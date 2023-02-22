@@ -8,8 +8,8 @@ class ManagerCompany
 {
     public function getCompanyIdentify(): string
     {
-        if (substr(request()->getPathInfo(), 0, 4) === '/api') {
-            return request()->route('company') ?: '';
+        if (request()->company) {
+            return request()->company ?: '';
         }
 
         return auth()->check() ? auth()->user()->company_id : '';
