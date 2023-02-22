@@ -23,4 +23,9 @@ class CategoryService
     {
         return $this->repository->findByUrl($id);
     }
+
+    public function findById(string $id)
+    {
+        return $this->repository->findById($id);
+    }
 }

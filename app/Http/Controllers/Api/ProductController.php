@@ -21,6 +21,6 @@ class ProductController extends Controller
 
     public function show(Request $request)
     {
-        return new ProductResource($this->service->findByFlag($request->product));
+        return new ProductResource($this->service->findById($request->product));
     }
 }

@@ -21,4 +21,9 @@ class CategoryEloquentRepository implements CategoryRepository
     {
         return $this->model->where('url', $url)->first();
     }
+
+    public function findById(string $id)
+    {
+        return $this->model->find($id);
+    }
 }

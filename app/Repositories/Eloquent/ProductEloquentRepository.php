@@ -30,4 +30,9 @@ class ProductEloquentRepository implements ProductRepository
     {
         return $this->model->where('flag', $flag)->first();
     }
+
+    public function findById(string $id)
+    {
+        return $this->model->find($id);
+    }
 }

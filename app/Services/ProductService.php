@@ -24,4 +24,9 @@ class ProductService
     {
         return $this->repository->findByFlag($id);
     }
+
+    public function findById(string $id)
+    {
+        return $this->repository->findById($id);
+    }
 }
