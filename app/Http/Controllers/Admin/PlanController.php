@@ -11,7 +11,7 @@ class PlanController extends Controller
 {
     public function __construct(private Plan $repository)
     {
-        //
+        $this->middleware('can:plans');
     }
 
     public function index(Request $request)

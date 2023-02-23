@@ -14,8 +14,53 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
+    <p>
+        <strong>Plano: </strong> {{ $plan->name }}
+    </p>
     <form action="{{ $register_url }}" method="post">
         @csrf
+        <input type="hidden" name="plan" value="{{request('plan')}}" />
+        <input type="hidden" name="random" value="{{request('random')}}" />
+        <input type="hidden" name="date" value="{{request('date')}}" />
+        <input type="hidden" name="token" value="{{request('token')}}" />
+
+        {{-- Company name field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="company_name" class="form-control @error('company_name') is-invalid @enderror"
+                   value="{{ old('company_name') }}" placeholder="Nome da empresa" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-building"></span>
+                </div>
+            </div>
+
+            @error('company_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        {{-- Company name field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="company_cnpj" class="form-control @error('company_cnpj') is-invalid @enderror"
+                   value="{{ old('company_cnpj') }}" placeholder="CNPJ da empresa" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-id-card"></span>
+                </div>
+            </div>
+
+            @error('company_cnpj')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <hr />
 
         {{-- Name field --}}
         <div class="input-group mb-3">

@@ -49,6 +49,12 @@ Breadcrumbs::for('admin.profiles.permissions.index', function (BreadcrumbTrail $
     $trail->push('Detalhe do perfil');
 });
 
+Breadcrumbs::resource('admin.companies', 'Empresas');
 Breadcrumbs::resource('admin.plans', 'Planos');
 Breadcrumbs::resource('admin.profiles', 'Perfis');
+Breadcrumbs::resource('admin.users', 'Usuários');
 Breadcrumbs::resource('admin.permissions', 'Permissões');
+Breadcrumbs::resource('admin.categories', 'Categorias');
+Breadcrumbs::resource('admin.products', 'Produtos');
+Breadcrumbs::resource('admin.tables', 'Mesas');
+Breadcrumbs::resource('admin.roles', 'Cargos');

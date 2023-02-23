@@ -189,6 +189,7 @@ return [
         'name'      => 'nome',
         'zipcode'   => 'cep',
         'company_name'   => 'razão social',
+        'company_cnpj'   => 'cnpj da empresa',
         'neighborhood' => 'bairro',
         'number'    => 'número',
         'password'  => 'senha',

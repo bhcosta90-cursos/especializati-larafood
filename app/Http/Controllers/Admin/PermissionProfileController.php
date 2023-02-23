@@ -11,7 +11,7 @@ class PermissionProfileController extends Controller
 {
     public function __construct(private Profile $repository)
     {
-        //
+        $this->middleware('can:profiles');
     }
 
     public function index(string $id, FormSupport $formSupport)

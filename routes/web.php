@@ -1,41 +1,65 @@
 <?php
 
 use App\Http\Controllers\Admin\{
+    CategoryController,
+    CategoryProductController,
+    CompanyController,
     DetailPlanController,
+    HomeController as AdminHomeController,
     PermissionController,
     PlanController,
     ProfileController,
     PermissionProfileController,
-    PlanProfileController
+    PermissionRoleController,
+    PlanProfileController,
+    ProductController,
+    RoleController,
+    TableController,
+    UserController
 };
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', [HomeController::class, 'index']);
+Route::group(['as' => 'site.'], function () {
+    Route::group(['as' => 'home.'], function () {
+        Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/plan/{plan}', [HomeController::class, 'plan'])->name('plan');
+    });
+});
 
 Auth::routes();
 
-Route::get('/home', [PlanController::class, 'index'])->name('home');
+Route::middleware(['auth'])->get('/home', [AdminHomeController::class, 'index'])->name('home');
 
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'middleware' => ['auth'],
 ], function () {
+    Route::resource('companies', CompanyController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('profiles', ProfileController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('tables', TableController::class);
+    Route::resource('products', ProductController::class);
     Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
+    Route::group([
+        'as' => 'roles.permissions.',
+        'prefix' => 'roles/{id}/permissions'
+    ], function(){
+        Route::get('/', [PermissionRoleController::class, 'index'])->name('index');
+        Route::put('/', [PermissionRoleController::class, 'store'])->name('store');
+    });
+
+    Route::group([
+        'prefix' => 'products/{id}/categories',
+        'as' => 'products.categories.'
+    ], function(){
+        Route::get('/', [CategoryProductController::class, 'index'])->name('index');
+        Route::put('/', [CategoryProductController::class, 'store'])->name('store');
+    });
 
     Route::group([
         'prefix' => 'plans/{url}',

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Company;
 use App\Models\Plan;
-use App\Observers\PlanObserver;
+use App\Observers\UrlObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         Paginator::useBootstrap();
+
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -22,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Plan::observe(PlanObserver::class);
+        Plan::observe(UrlObserver::class);
+        Company::observe(UrlObserver::class);
+        Category::observe(UrlObserver::class);
     }
 }

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Services\CompanyService;
+use App\Support\PlanSupport;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class RegisterController extends Controller
 {
@@ -23,6 +27,23 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    private Plan $plan;
+
+    public function showRegistrationForm(Request $request)
+    {
+        $plan = Plan::find($request->plan);
+
+        if (!$plan) {
+            return redirect()->route('site.home.index');
+        }
+
+        if (!PlanSupport::validateWithToken($plan->id, $request->date, $request->random, $request->token)) {
+            return redirect()->route('site.home.index');
+        }
+
+        return view('auth.register', compact('plan'));
+    }
 
     /**
      * Where to redirect users after registration.
@@ -49,7 +70,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $this->plan = Plan::find($data['plan']);
+
+        if (!$this->plan) {
+            return redirect()->route('site.home.index');
+        }
+
+        if (!PlanSupport::validateWithToken($this->plan->id, $data['date'], $data['random'], $data['token'])) {
+            return redirect()->route('site.home.index');
+        }
+
         return Validator::make($data, [
+            'plan' => ['required', 'string', 'min:3', 'max:255', 'exists:plans,id'],
+            'company_name' => ['required', 'string', 'min:3', 'max:255', 'unique:companies,name'],
+            'company_cnpj' => ['required', 'string', 'min:14', 'max:14', 'unique:companies,cnpj'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -64,10 +98,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        try {
+            DB::beginTransaction();
+            $user = app(CompanyService::class)->make($this->plan, $data);
+            DB::commit();
+            return $user;
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 }
