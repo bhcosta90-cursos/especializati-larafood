@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             DetailPlanSeeder::class,
             UserSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+            CategoryProductSeeder::class,
+            TableSeeder::class,
         ]);
     }
 }

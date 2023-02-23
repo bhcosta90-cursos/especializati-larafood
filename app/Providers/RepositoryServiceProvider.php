@@ -6,6 +6,7 @@ use App\Repositories\Contracts\{
     CategoryRepository,
     CompanyRepository,
     CustomerRepository,
+    OrderRepository,
     ProductRepository,
     TableRepository
 };
@@ -14,6 +15,7 @@ use App\Repositories\Eloquent\{
     CategoryEloquentRepository,
     CompanyEloquentRepository,
     CustomerEloquentRepository,
+    OrderEloquentRepository,
     ProductEloquentRepository,
     TableEloquentRepository
 };
@@ -32,6 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TableRepository::class, TableEloquentRepository::class);
         $this->app->bind(ProductRepository::class, ProductEloquentRepository::class);
         $this->app->bind(CustomerRepository::class, CustomerEloquentRepository::class);
+        $this->app->bind(OrderRepository::class, OrderEloquentRepository::class);
     }
 
     /**

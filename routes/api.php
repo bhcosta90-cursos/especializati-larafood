@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\{
     CategoryController,
     CompanyController,
+    OrderController,
     ProductController,
     TableController
 };
@@ -14,9 +15,9 @@ use App\Http\Controllers\Api\Auth\{
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->as('v1.')->group(function () {
     Route::resource('companies', CompanyController::class)->only(['index', 'show']);
-    Route::prefix('auth')->group(function () {
+    Route::prefix('auth')->as('auth.')->group(function () {
         Route::post('register', [RegisterController::class, 'store']);
         Route::post('token', [AuthController::class, 'token']);
         Route::middleware('auth:sanctum')->group(function () {
@@ -31,5 +32,10 @@ Route::prefix('v1')->group(function () {
         Route::resource('categories', CategoryController::class)->only(['index', 'show']);
         Route::resource('tables', TableController::class)->only(['index', 'show']);
         Route::resource('products', ProductController::class)->only(['index', 'show']);
+        Route::resource('orders', OrderController::class)->only(['store', 'show']);
+
+        Route::prefix('auth')->as('auth.')->middleware('auth:sanctum')->group(function () {
+            Route::resource('orders', OrderController::class)->only(['store', 'index', 'show']);
+        });
     });
 });
