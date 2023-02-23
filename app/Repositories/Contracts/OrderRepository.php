@@ -16,4 +16,6 @@ interface OrderRepository
     public function findByIdentify(string $identify);
 
     public function registerProducts(string $id, array $products);
+
+    public function findByCustomer(string $customer);
 }

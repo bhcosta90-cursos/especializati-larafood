@@ -35,8 +35,14 @@ class OrderService
         return $obj;
     }
 
-    public function findByIdentify(string $id){
+    public function findByIdentify(string $id)
+    {
         return $this->repository->findByIdentify($id);
+    }
+
+    public function findByCustomer(string $customer)
+    {
+        return $this->repository->findByCustomer($customer);
     }
 
     private function getTotalByProducts(array $products): float

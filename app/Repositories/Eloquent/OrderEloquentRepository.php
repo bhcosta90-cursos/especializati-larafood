@@ -51,4 +51,9 @@ class OrderEloquentRepository implements OrderRepository
 
         $order->products()->attach($data);
     }
+
+    public function findByCustomer(string $customer)
+    {
+        return $this->model->where('customer_id', $customer)->latest()->paginate();
+    }
 }

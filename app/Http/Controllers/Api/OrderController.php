@@ -15,10 +15,15 @@ class OrderController extends Controller
         //
     }
 
-    public function store(FormSupport $formSupport)
+    public function index(Request $request)
+    {
+        return OrderResource::collection($this->service->findByCustomer($request->user()->id));
+    }
+
+    public function store(FormSupport $formSupport, Request $request)
     {
         $data = $formSupport->data(\App\Forms\Admin\OrderForm::class);
-        return new OrderResource($this->service->create($data));
+        return new OrderResource($this->service->create($data + ['customer' => $request->user()?->id]));
     }
 
     public function show(Request $request)
