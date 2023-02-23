@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\{
     CategoryController,
     CompanyController,
     OrderController,
+    OrderEvaluationController,
     ProductController,
     TableController
 };
@@ -34,8 +35,23 @@ Route::prefix('v1')->as('v1.')->group(function () {
         Route::resource('products', ProductController::class)->only(['index', 'show']);
         Route::resource('orders', OrderController::class)->only(['store', 'show']);
 
+        Route::group([
+            'as' => 'orders.',
+            'prefix' => 'orders/{order}',
+        ], function () {
+            Route::get('evaluations', [OrderEvaluationController::class, 'byOrder'])->name('evaluations.orders.index');
+        });
+
         Route::prefix('auth')->as('auth.')->middleware('auth:sanctum')->group(function () {
             Route::resource('orders', OrderController::class)->only(['store', 'index', 'show']);
+            Route::get('evaluations', [OrderEvaluationController::class, 'byCustomer'])->name('evaluations.customers.index');
+
+            Route::group([
+                'as' => 'orders.',
+                'prefix' => 'orders/{order}',
+            ], function () {
+                Route::post('evaluations', [OrderEvaluationController::class, 'store'])->name('evaluations.store');
+            });
         });
     });
 });
