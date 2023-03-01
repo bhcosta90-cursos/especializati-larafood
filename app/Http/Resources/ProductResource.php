@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'flag' => $this->flag,
             'description' => $this->description,
+            'categories' => $this->categories,
             'date_created' => now()::parse($this->created_at)->format('d/m/Y'),
         ];
     }
