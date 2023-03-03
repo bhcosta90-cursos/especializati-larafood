@@ -41,7 +41,13 @@ class OrderEloquentRepository implements OrderRepository
         $data = [];
         foreach ($products as $product) {
             $objProduct = $cachedProducts[$product['product_id']];
-            array_push($data, [
+            /*array_push($data, [
+                'id' => str()->uuid(),
+                'quantity' => $product['quantity'],
+                'product_id' => $product['product_id'],
+                'price' => $objProduct->price,
+            ]);*/
+            $order->products()->create([
                 'id' => str()->uuid(),
                 'quantity' => $product['quantity'],
                 'product_id' => $product['product_id'],
@@ -49,7 +55,7 @@ class OrderEloquentRepository implements OrderRepository
             ]);
         }
 
-        $order->products()->attach($data);
+        //$order->products()->attach($data);
     }
 
     public function findByCustomer(string $customer)

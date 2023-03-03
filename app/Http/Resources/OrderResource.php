@@ -24,7 +24,7 @@ class OrderResource extends JsonResource
             'company' => new CompanyResource($this->company),
             'customer' => $this->customer_id ? new CustomerResource($this->customer) : null,
             'table' => $this->table_id ? new TableResource($this->table) : null,
-            'products' => ProductResource::collection($this->products)
+            'products' => OrderProductResource::collection($this->products)
         ];
     }
 }
